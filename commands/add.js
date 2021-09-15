@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 const inquirer = require('inquirer')
-const chalk = require('chalk')
 const fs = require('fs')
 const templateList = require(`${__dirname}/../template`)
 const { showTable } = require(`${__dirname}/../util/showTable`)
+const symbols = require('log-symbols')
+const chalk = require('chalk')
+chalk.level = 1
 
 let question = [
   {
@@ -37,9 +39,10 @@ inquirer
     let { name, url } = answers;
     templateList[name] = url.replace(/[\u0000-\u0019]/g, '') // 过滤 unicode 字符
     fs.writeFile(`${__dirname}/../template.json`, JSON.stringify(templateList), 'utf-8', err => {
-      if (err) console.log(err)
-      console.log(chalk.green('Add a template successfully!\n'))
-      console.log(chalk.grey('The latest templateList is: \n'))
+      if (err) console.log(chalk.red(symbols.error), chalk.red(err))
+      console.log('\n')
+      console.log(chalk.green(symbols.success), chalk.green('Add a template successfully!\n'))
+      console.log(chalk.green('The latest templateList is: \n'))
       showTable(templateList)
     })
   })

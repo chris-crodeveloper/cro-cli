@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 const program = require('commander')
-const chalk = require('chalk')
 const ora = require('ora')
 const download = require('download-git-repo')
 const templateList = require(`${__dirname}/../template`)
+const symbols = require('log-symbols')
+const chalk = require('chalk')
+chalk.level = 1
 
 program
   .usage('<template-name> [project-name]')
@@ -28,7 +30,7 @@ if (!projectName) {
 let url = templateList[templateName]
 console.log(url)
 
-console.log(chalk.white('\n Start generating... \n'))
+console.log(chalk.green('\n Start generating... \n'))
 // 出现加载图标
 const spinner = ora("Downloading...");
 spinner.start();
@@ -40,12 +42,12 @@ download(
   err => {
     if (err) {
       spinner.fail();
-      console.log(chalk.red(`Generation failed. ${err}`))
+      console.log(chalk.red(symbols.error), chalk.red(`Generation failed. ${err}`))
       return
     }
     // 结束加载图标
     spinner.succeed();
-    console.log(chalk.green('\n Generation completed!'))
+    console.log(chalk.green(symbols.success), chalk.green('Generation completed!'))
     console.log('\n To get started')
     console.log(`\n    cd ${projectName} \n`)
   }

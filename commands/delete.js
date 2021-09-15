@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 const inquirer = require('inquirer')
-const chalk = require('chalk')
 const fs = require('fs')
 const templateList = require(`${__dirname}/../template`)
 const { showTable } = require(`${__dirname}/../util/showTable`)
+const symbols = require('log-symbols')
+const chalk = require('chalk')
+chalk.level = 1
 
 let question = [
   {
@@ -27,9 +29,10 @@ inquirer
     let { name } = answers;
     delete templateList[name]
     fs.writeFile(`${__dirname}/../template.json`, JSON.stringify(templateList), 'utf-8', err => {
-      if (err) console.log(err)
-      console.log(chalk.green('Deleted successfully!\n'))
-      console.log(chalk.grey('The latest template list is: \n'))
+      if (err) console.log(chalk.red(symbols.error), chalk.red(err))
+      console.log('\n')
+      console.log(chalk.green(symbols.success), chalk.green('Deleted successfully!\n'))
+      console.log(chalk.green('The latest templateList is: \n'))
       showTable(templateList)
     })
   })
