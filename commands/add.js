@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 
-// 交互式命令行
 const inquirer = require('inquirer')
-// 修改控制台字符串的样式
 const chalk = require('chalk')
-// node 内置文件模块
 const fs = require('fs')
-// 读取根目录下的 template.json
-const tplObj = require(`${__dirname}/../template`)
+const templateList = require(`${__dirname}/../template`)
+const { showTable } = require(`${__dirname}/../util/showTable`)
 
-// 自定义交互式命令行的问题及简单的校验
 let question = [
   {
     name: "name",
@@ -18,7 +14,7 @@ let question = [
     validate (val) {
       if (!val) {
         return 'Name is required!'
-      } else if (tplObj[val]) {
+      } else if (templateList[val]) {
         return 'Template has already existed!'
       } else {
         return true
@@ -38,17 +34,12 @@ let question = [
 
 inquirer
   .prompt(question).then(answers => {
-    // answers 就是用户输入的内容，是个对象
     let { name, url } = answers;
-    // 过滤 unicode 字符
-    tplObj[name] = url.replace(/[\u0000-\u0019]/g, '')
-    // 把模板信息写入 template.json 文件中
-    fs.writeFile(`${__dirname}/../template.json`, JSON.stringify(tplObj), 'utf-8', err => {
+    templateList[name] = url.replace(/[\u0000-\u0019]/g, '') // 过滤 unicode 字符
+    fs.writeFile(`${__dirname}/../template.json`, JSON.stringify(templateList), 'utf-8', err => {
       if (err) console.log(err)
-      console.log('\n')
-      console.log(chalk.green('Added successfully!\n'))
-      console.log(chalk.grey('The latest template list is: \n'))
-      console.log(tplObj)
-      console.log('\n')
+      console.log(chalk.green('Add a template successfully!\n'))
+      console.log(chalk.grey('The latest templateList is: \n'))
+      showTable(templateList)
     })
   })
