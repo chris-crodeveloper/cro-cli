@@ -1,7 +1,7 @@
 ## Installation
 
 ```
-npm install cm-cli -g
+npm install cm-vcli -g
 ```
 
 or

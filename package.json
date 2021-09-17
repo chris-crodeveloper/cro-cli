@@ -1,5 +1,5 @@
 {
-  "name": "cm-cli",
+  "name": "cm-vcli",
   "version": "1.0.0",
   "description": "a vue cli",
   "main": "index.js",
