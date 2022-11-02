@@ -11,7 +11,7 @@ chalk.level = 1
 let question = [
   {
     name: "name",
-    message: "请输入要删除的模板名称",
+    message: "Name of template to delete:",
     validate (val) {
       if (!val) {
         return 'Name is required!'

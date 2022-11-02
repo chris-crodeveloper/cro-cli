@@ -21,7 +21,7 @@ program
 
 program
   .command('list')
-  .description('List the templateList')
+  .description('List the template list')
   .action(() => {
     require('../commands/list')
   })
@@ -31,6 +31,20 @@ program
   .description('init a project')
   .action(() => {
     require('../commands/init')
+  })
+
+program
+  .command('set')
+  .description('aset CRO github url')
+  .action(() => {
+    require('../commands/set')
+  })
+
+program
+  .command('config')
+  .description('show config')
+  .action(() => {
+    require('../commands/config')
   })
 
 program.parse(process.argv)

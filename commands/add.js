@@ -12,7 +12,7 @@ let question = [
   {
     name: "name",
     type: 'input',
-    message: "请输入模板名称",
+    message: "Name of the template:",
     validate (val) {
       if (!val) {
         return 'Name is required!'
@@ -26,7 +26,7 @@ let question = [
   {
     name: "url",
     type: 'input',
-    message: "请输入模板地址",
+    message: "Github url of template",
     validate (val) {
       if (val === '') return 'The url is required!'
       return true
@@ -37,7 +37,7 @@ let question = [
 inquirer
   .prompt(question).then(answers => {
     let { name, url } = answers;
-    templateList[name] = url.replace(/[\u0000-\u0019]/g, '') // 过滤 unicode 字符
+    templateList[name] = url.replace(/[\u0000-\u0019]/g, '') 
     fs.writeFile(`${__dirname}/../template.json`, JSON.stringify(templateList), 'utf-8', err => {
       if (err) console.log(chalk.red(symbols.error), chalk.red(err))
       console.log('\n')

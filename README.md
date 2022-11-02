@@ -43,13 +43,11 @@ $ cm add
 
 The latest templateList is:
 
-┌───────┬─────────────────────────────────────────────────────┐
-│ name  │ url                                                 │
-├───────┼─────────────────────────────────────────────────────┤
-│ app   │ https://github.com/Michael-lzg/vue-cli4-vant.git    │
-├───────┼─────────────────────────────────────────────────────┤
-│ admin │ https://github.com/Michael-lzg/vue-ant-template.git │
-└───────┴─────────────────────────────────────────────────────┘
+┌───────┬─────────────────────────────────────────────────────────┐
+│ name  │ url                                                     │
+├───────┼─────────────────────────────────────────────────────────┤
+│ app   │ https://github.com/Chris-Davies-Web/template-example    │
+└───────┴─────────────────────────────────────────────────────────┘
 ```
 
 ## cm delete
@@ -65,11 +63,11 @@ $ cm delete
 
 The latest templateList is:
 
-┌──────┬──────────────────────────────────────────────────┐
-│ name │ url                                              │
-├──────┼──────────────────────────────────────────────────┤
-│ app  │ https://github.com/Michael-lzg/vue-cli4-vant.git │
-└──────┴──────────────────────────────────────────────────┘
+┌──────┬────────────────────────────────────────────────────────┐
+│ name │ url                                                    │
+├──────┼────────────────────────────────────────────────────────┤
+│ app  │ https://github.com/Chris-Davies-Web/template-example   │
+└──────┴────────────────────────────────────────────────────────┘
 ```
 
 ## cm list
@@ -78,11 +76,11 @@ This command will shows you the templates list.
 
 ```
 $ cm list
-┌──────┬──────────────────────────────────────────────────┐
-│ name │ url                                              │
-├──────┼──────────────────────────────────────────────────┤
-│ app  │ https://github.com/Michael-lzg/vue-cli4-vant.git │
-└──────┴──────────────────────────────────────────────────┘
+┌──────┬──────────────────────────────────────────────────────┐
+│ name │ url                                                  │
+├──────┼──────────────────────────────────────────────────────┤
+│ app  │ https://github.com/Chris-Davies-Web/template-example │
+└──────┴──────────────────────────────────────────────────────┘
 ```
 
 ## cm init 
@@ -90,5 +88,21 @@ $ cm list
 You can init a templates use this command
 
 ```
-cm init app project
+cm init 
+```
+
+## cm cro --set <git-repo-url>
+
+Set the repo of the main CRO repository which holds all tests
+
+```
+cm repo --set https://github.com/Chris-Davies-Web/template-example
+```
+
+## cm cro --list <git-repo-url>
+
+View the main CRO repository which holds all tests
+
+```
+cm repo --list 
 ```
